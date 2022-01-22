@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.*;
 
-public class ReadDatabase{    
+public class Canvas{    
     public static void main(String[] args) {
         try{
 
@@ -29,9 +29,11 @@ public class ReadDatabase{
                 String shape = resultset.getString("shape");  
                 String color = resultset.getString("color");
                 String param1 = resultset.getString("param1");                
-                String param2 = resultset.getString("param2");  
+                String param2 = resultset.getString("param2");
+                String param3 = resultset.getString("param3");  
+               
                   
-                String[] componentArray = new String[]{location,shape,color,param1,param2}; 
+                String[] componentArray = new String[]{location,shape,color,param1,param2,param3}; 
                 
                 DrawingShape drawingshape = new DrawingShape(componentArray);           
                 f.setSize(w,h);
