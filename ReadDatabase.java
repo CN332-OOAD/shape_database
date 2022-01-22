@@ -4,15 +4,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.*;
 
-public class Database{    
+public class ReadDatabase{    
     public static void main(String[] args) {
         try{
 
             // database section            
-            String url = "jdbc:mysql://localhost/walk";           
+            String url = "jdbc:mysql://localhost/shape";           
             String user = "root";
             String password = "";     
-            String sql = "SELECT * FROM `walk`";     
+            String sql = "SELECT * FROM `shape`";     
                         
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement  statement = connection.createStatement();
@@ -20,18 +20,22 @@ public class Database{
             
             //frame section
             JFrame f = new JFrame();
-            int w = 1920;
-            int h = 1080;
+            int w = 670;
+            int h = 480;
             
-           // drawing from database
+           // drawing section
             while (resultset.next()){
-                String shape = resultset.getString("shape");
-                String x = resultset.getString("x");
-                String y = resultset.getString("y");
+                String location = resultset.getString("location");
+                String shape = resultset.getString("shape");  
+                String color = resultset.getString("color");
+                String param1 = resultset.getString("param1");                
+                String param2 = resultset.getString("param2");  
+                  
+                String[] componentArray = new String[]{location,shape,color,param1,param2}; 
                 
-                Drawing dc = new Drawing(shape,x,y);           
+                DrawingShape drawingshape = new DrawingShape(componentArray);           
                 f.setSize(w,h);
-                f.add(dc);
+                f.add(drawingshape);
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setVisible(true);
                 
